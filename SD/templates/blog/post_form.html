@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Форма{% endblock %}
+
+{% block content %}
+    <h1>Форма поста</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Send" />
+    </form>
+
+    Информация из запроса:
+    <p>{{ title }}</p>
+    <p>{{ text }}</p>
+    <p>{{ data }}</p>
+
+    <h1>Список постов:</h1>
+    {% for post in  posts%}
+        {{ post }}
+    {% endfor %}
+
+{% endblock %}
