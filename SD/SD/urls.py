@@ -20,17 +20,21 @@ from django.views.generic.edit import CreateView
 from users.models import MyUser
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth import get_user_model
+from users.forms import MyUserCreationForm
+
+User = get_user_model()
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', include('posts.urls', namespace='posts')),
-    
+
     path('auth/', include('django.contrib.auth.urls')),
-    path('auth/registration/', CreateView.as_view( # передать сюда расширенного юзера
+    path('auth/registration/', CreateView.as_view(
         template_name='registration/registration_form.html',
         model=MyUser,
-        form_class=UserCreationForm,
+        form_class=MyUserCreationForm,
         success_url=reverse_lazy('blog:index')),
         name='registration'),
 ]

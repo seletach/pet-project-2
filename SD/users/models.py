@@ -18,6 +18,9 @@ class MyUser(AbstractUser):
         help_text='Группа, например: ТД-22-3')
     birth_date = models.DateField(null=True, blank=True)
 
+    class Meta:
+        swappable = 'AUTH_USER_MODEL'
+
 
 class Roles_for_MyUser(models.Model):
     """Роли для пользователей."""
