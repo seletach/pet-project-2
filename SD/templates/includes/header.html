@@ -2,12 +2,12 @@
 <header>
     <ul>
         <li><a href={% url 'blog:index' %}>Главная</a></li>
-        <li><a href={% url 'blog:profile' %}>Профиль</a></li>
+        {% if user.is_authenticated  %}
+        <li><a href={% url 'users:user_profile' user.id %}>{{ user.username }}</a></li>
+        {% endif %}
         <li><a href={% url 'blog:post_form' %}>Написть пост</a></li>
         
         {% if user.is_authenticated  %}
-        <p>Пользователь: {{ user.username }}</p>
-        <p>Админ: {{ user.is_superuser }}</p>
         <li><a href={% url 'logout' %}>Выйти</a></li>
         {% else %}
         <li><a href={% url 'login' %}>Войти</a></li>

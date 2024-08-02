@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Профиль{% endblock %}
+
+{% block content %}
+    <h1>{{ user.username }}</h1>
+    <p>Полное имя: {{ user.first_name }} {{ user.last_name }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>О себе: {{ user.bio }}</p>
+    <p>Статус: {{ user.status }}</p>
+    <p>Место учёбы: {{ user.campus }}</p>
+    <p>Группа: {{ user.group }}</p>
+    <p>Дата рождения: {{ user.birth_date }}</p>
+    <p>На форуме с {{ user.date_joined }}</p>
+
+    <h3>Написать о себе:</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        <input type="submit" value="Send" />
+    </form>
+{% endblock %}

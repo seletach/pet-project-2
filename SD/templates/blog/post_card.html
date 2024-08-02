@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Карточка поста{% endblock %}
+
+{% block content %}
+
+    <h1>Карточка поста "{{ post.title }}" </h1>
+    <h3>Текст поста: </h3> <p>{{ post.text }}</p>
+    <h3>Дата создания поста: </h3> <p>{{ post.created_at }}</p>
+    <h3>Автор поста:</h3> <p>{{ author.username }}</p>
+
+    <h3>Написать комментарии:</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <input type="submit" value="Send" />
+    </form>
+
+    <h3>Комментарии к посту:</h3>
+    {% for comment in comments %}
+        <p>Автор: <a href="{% url 'users:user_profile' comment.author_id %}">{{ comment.author_id }}</a></p>
+        <p>Текст: {{ comment.text }}</p>
+    {% endfor %}
+{% endblock %}

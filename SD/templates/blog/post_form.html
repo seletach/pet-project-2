@@ -3,21 +3,20 @@
 {% block title %}Форма{% endblock %}
 
 {% block content %}
-    <h1>Форма поста</h1>
+    <h1>Форма поста. Записей в БД: <b>{{ count }}</b></h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Send" />
     </form>
 
-    Информация из запроса:
-    <p>{{ title }}</p>
-    <p>{{ text }}</p>
-    <p>{{ data }}</p>
-
     <h1>Список постов:</h1>
-    {% for post in  posts%}
-        {{ post }}
-    {% endfor %}
+    <ul>
+        {% for post in posts %}
+            <li> 
+                <a href="{% url 'blog:post_card' post.id %}">{{ post.id }} {{ post.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
 
 {% endblock %}

@@ -1,10 +1,9 @@
-from django.contrib import admin
-from django.urls import path, include
-from django.contrib.auth import views as auth_views
+from django.urls import path
+from users import views 
+
 
 app_name = 'users'
 
 urlpatterns = [
-    # path('login/', auth_views.LoginView(template_name='')),
-    # path('', include('django.contrib.auth.urls')),
+    path('<int:user_id>/', views.user_profile, name='user_profile'), # вместо id использовать username
 ]

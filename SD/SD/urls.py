@@ -30,6 +30,8 @@ urlpatterns = [
 
     path('', include('posts.urls', namespace='posts')),
 
+    path('profile/', include('users.urls', namespace='users')),
+
     path('auth/', include('django.contrib.auth.urls')),
     path('auth/registration/', CreateView.as_view(
         template_name='registration/registration_form.html',

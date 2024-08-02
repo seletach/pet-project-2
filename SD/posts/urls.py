@@ -1,10 +1,10 @@
 from django.urls import path
-from . import views
+from posts import views
 
 app_name='blog'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('profile/', views.profile, name='profile'),
-    path('post_form/', views.post_form, name='post_form')
+    path('post_form/', views.post_form, name='post_form'),
+    path('post_card/<int:id>/', views.post_card, name='post_card')
 ]
