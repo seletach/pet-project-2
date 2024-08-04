@@ -4,6 +4,7 @@
 
 {% block content %}
     <h1>Форма поста. Записей в БД: <b>{{ count }}</b></h1>
+    <h2>{{ message }}</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}

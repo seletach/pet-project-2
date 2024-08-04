@@ -3,7 +3,9 @@
 {% block title %}Профиль{% endblock %}
 
 {% block content %}
+
     <h1>{{ user.username }}</h1>
+    <a href="{% url 'users:user_profile_edit' user.username %}">редактировать</a>
     <p>Полное имя: {{ user.first_name }} {{ user.last_name }}</p>
     <p>Email: {{ user.email }}</p>
     <p>О себе: {{ user.bio }}</p>
@@ -13,10 +15,12 @@
     <p>Дата рождения: {{ user.birth_date }}</p>
     <p>На форуме с {{ user.date_joined }}</p>
 
-    <h3>Написать о себе:</h3>
+{% comment %} Придумать какую нибудь проверку для вывода формы {% endcomment %}
     <form method="post">
+        <h3>Написать о себе:</h3>
         {% csrf_token %}
         {{ user_form.as_p }}
-        <input type="submit" value="Send" />
+        <input type="submit" value="Сохранить" />
     </form>
+
 {% endblock %}

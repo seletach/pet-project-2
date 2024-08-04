@@ -1,13 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}Карточка поста{% endblock %}
+{% block title %}Форма{% endblock %}
 
 {% block content %}
-
-    <h1>Карточка поста "{{ post.title }}" </h1>
+    <h1>Карточка поста "{{ post.title }}"</h1><a href="{% url 'blog:post_edit' post.id %}">редактировать пост</a>
     <h3>Текст поста: </h3> <p>{{ post.text }}</p>
     <h3>Дата создания поста: </h3> <p>{{ post.created_at }}</p>
-    <h3>Автор поста:</h3> <p>{{ author.username }}</p>
+    <h3>Автор поста:</h3> <p>{{ post.author.username }}</p>
 
     <h3>Написать комментарии:</h3>
     <form method="post">
@@ -18,7 +17,10 @@
 
     <h3>Комментарии к посту:</h3>
     {% for comment in comments %}
-        <p>Автор: <a href="{% url 'users:user_profile' comment.author_id %}">{{ comment.author_id }}</a></p>
+    <div class="wrapper">
+        <p>Автор: <a href="{% url 'users:user_profile' comment.author.username %}">{{ comment.author.username }}</a></p>
         <p>Текст: {{ comment.text }}</p>
+        <a href="{% url 'blog:comment_edit' post.id comment.id %}">редактировать комментарий</a>
+    </div>
     {% endfor %}
 {% endblock %}

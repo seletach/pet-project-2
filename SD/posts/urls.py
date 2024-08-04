@@ -5,6 +5,13 @@ app_name='blog'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('post_form/', views.post_form, name='post_form'),
-    path('post_card/<int:id>/', views.post_card, name='post_card')
+
+    path('post_write/', views.post_write, name='post_write'),
+    path('post/<int:post_id>/edit/', views.post_edit, name='post_edit'),
+
+    path('post/<int:post_id>/', views.post_card, name='post_card'),
+
+    path('post/<int:post_id>/comment/<int:comment_id>/edit/', views.comment_edit, name='comment_edit'),
+
+
 ]

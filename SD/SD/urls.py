@@ -25,6 +25,8 @@ from users.forms import MyUserCreationForm
 
 User = get_user_model()
 
+# app_name = 'SD'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 
