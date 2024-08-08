@@ -3,7 +3,10 @@
 {% block title %}Форма{% endblock %}
 
 {% block content %}
-    <h1>Карточка поста "{{ post.title }}"</h1><a href="{% url 'blog:post_edit' post.id %}">редактировать пост</a>
+    <h1>Карточка поста "{{ post.title }}"</h1>
+    <a href="{% url 'blog:post_update' post.id %}">редактировать пост</a> |
+    <a href="{% url 'blog:post_delete' post.id %}" style="color: red">удалить</a>
+    {% if message %}{{ message }}{% endif %}
     <h3>Текст поста: </h3> <p>{{ post.text }}</p>
     <h3>Дата создания поста: </h3> <p>{{ post.created_at }}</p>
     <h3>Автор поста:</h3> <p>{{ post.author.username }}</p>
@@ -20,7 +23,8 @@
     <div class="wrapper">
         <p>Автор: <a href="{% url 'users:user_profile' comment.author.username %}">{{ comment.author.username }}</a></p>
         <p>Текст: {{ comment.text }}</p>
-        <a href="{% url 'blog:comment_edit' post.id comment.id %}">редактировать комментарий</a>
+        <a href="{% url 'blog:comment_edit' post.id comment.id %}">редактировать комментарий</a> | 
+        {% comment %} <a href="{% url 'blog:comment_edit' post.id comment.id %}" style="color: red">удалить</a> {% endcomment %}
     </div>
     {% endfor %}
 {% endblock %}

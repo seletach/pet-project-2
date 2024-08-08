@@ -9,7 +9,7 @@ def index(request):
     return render(request, 'blog/index.html')
 
 
-def post_write(request):
+def post_create(request):
     """
     Форма написания поста
     """
@@ -30,10 +30,10 @@ def post_write(request):
         'posts': Post.objects.all().order_by('id'),
         'message': message
     }
-    return render(request, 'blog/post_write.html', context)
+    return render(request, 'blog/post_create.html', context)
 
 
-def post_edit(request, post_id):
+def post_update(request, post_id):
     """
     Форма редактирования поста
     """
@@ -49,7 +49,18 @@ def post_edit(request, post_id):
         'form': form,
         'message': message
     }
-    return render(request, 'blog/post_write.html', context)
+    return render(request, 'blog/post_create.html', context)
+
+
+def post_delete(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+
+    if request.user == post.author:
+        post.delete()
+        return redirect('blog:post_create')
+    else: context = { 'message_error': 'Удалять может только автор поста!' }
+
+    return render(request, 'blog/post_card.html', context)
 
 
 def comment_edit(request, post_id, comment_id):

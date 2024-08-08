@@ -41,4 +41,4 @@ urlpatterns = [
         form_class=MyUserCreationForm,
         success_url=reverse_lazy('blog:index')),
         name='registration'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
