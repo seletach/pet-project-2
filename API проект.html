@@ -1,0 +1,44 @@
+<h3>Модель Post:</h3>
+<p>
+api/posts/ :<br> 
+<b style="color: blue;">GET</b> - получение списка всех постов (поле author - уникальный username) <br>
+<b style="color: blue;">POST</b> - создание одного поста <br>
+</p>
+<p>
+api/post/pk/ : <br>
+<b style="color: blue;">GET</b> - информация о посте и все комменты этого поста в списке по id <br>
+<b style="color: blue;">PUT</b> - полное обновление поста <br>
+<b style="color: blue;">PATCH</b> - частичное редактирование поста <br>
+<b style="color: red;">DELETE</b> - удаление поста <br>
+</p>
+
+<h3>Модель User:</h3>
+<p> 
+api/users/ : <br>
+<b style="color: blue;">GET</b> - получение списка всех пользователей <br>
+<b style="color: blue;">POST</b> - создание пользователя <br>
+</p>
+<p>
+api/user/pk/ : <br>
+<b style="color: blue;">GET</b> - информация о пользователе и список его постов по id <br>
+<b style="color: blue;">PUT, PATCH, </b><b style="color: red;">DELETE</b> - изменение пользователя <br>
+</p>
+<p>
+api/user/pk/posts/ : <br>
+<b style="color: blue;">GET</b> - спискок всех постов пользователя <br>
+</p>
+<p>
+api/user/pk/comments/ : <br>
+<b style="color: blue;">GET</b> - список всех комментов пользователя <br>
+</p>
+
+<h3>Модель Comments:</h3>
+<p>
+api/comments/ : <br>
+<b style="color: blue;">GET</b> - получение списка всех комментов (поле author - уникальный username) <br>
+<b style="color: blue;">POST</b> - создание коммента <br>
+</p> 
+<p>
+api/comment/pk/ : <br>
+<b style="color: blue;">GET, PUT, PATCH, </b><b style="color: red;">DELETE</b> - получение, редактирование, удаление коммента <br>
+</p>

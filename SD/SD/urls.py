@@ -41,4 +41,6 @@ urlpatterns = [
         form_class=MyUserCreationForm,
         success_url=reverse_lazy('blog:index')),
         name='registration'),
+
+    path('api/', include('API.urls', namespace='api'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

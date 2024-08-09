@@ -30,28 +30,30 @@ class Category(BaseModel):
     class Meta:
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
-    
+
     def __str__(self):
         return self.title
 
 
-class Post(BaseModel): # Добавить просмотры и реакции.
+class Post(BaseModel):
     """Пост."""
     title = models.CharField(max_length=MAX_LENGHT)
     text = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(user, on_delete=models.CASCADE)
+    author = models.ForeignKey(user,
+                               on_delete=models.CASCADE,
+                               related_name='posts')
     category = models.ForeignKey(
         Category,
         on_delete=models.SET_NULL,
         null=True)
-    image = models.ImageField(blank=True,upload_to='post_images')
+    image = models.ImageField(null=True,upload_to='post_images')
 
     class Meta:
         ordering = ['-pub_date']
         verbose_name = 'Публикация'
         verbose_name_plural = 'Публикации'
-    
+
     def __str__(self):
         return self.title
 
@@ -59,7 +61,9 @@ class Post(BaseModel): # Добавить просмотры и реакции.
 class Comments(BaseModel):
     """Комментарии для постов."""
     text = models.TextField()
-    author = models.ForeignKey(user, on_delete=models.CASCADE)
+    author = models.ForeignKey(user,
+                               on_delete=models.CASCADE,
+                               related_name='comments')
     post = models.ForeignKey(
         Post,
         on_delete=models.CASCADE,
