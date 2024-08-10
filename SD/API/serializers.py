@@ -3,6 +3,8 @@ from rest_framework import serializers
 from posts.models import Post, Comments
 from users.models import MyUser
 
+from drf_spectacular.utils import extend_schema, extend_schema_serializer
+
 class PostSerializer(serializers.ModelSerializer):
     author = serializers.StringRelatedField(read_only=True)
 

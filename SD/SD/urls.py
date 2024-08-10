@@ -23,9 +23,9 @@ from django.conf.urls.static import static
 from django.contrib.auth import get_user_model
 from users.forms import MyUserCreationForm
 
-User = get_user_model()
+from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 
-# app_name = 'SD'
+User = get_user_model()
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -42,5 +42,8 @@ urlpatterns = [
         success_url=reverse_lazy('blog:index')),
         name='registration'),
 
-    path('api/', include('API.urls', namespace='api'))
+    path('api/', include('API.urls', namespace='api')),
+
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='docs'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
